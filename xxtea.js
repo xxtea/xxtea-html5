@@ -1,8 +1,8 @@
 /**********************************************************\
 |                                                          |
-| xxtea.go                                                 |
+| xxtea.js                                                 |
 |                                                          |
-| XXTEA encryption algorithm library for Golang.           |
+| XXTEA encryption algorithm library for HTML5.            |
 |                                                          |
 | Encryption Algorithm Authors:                            |
 |      David J. Wheeler                                    |
