@@ -9,7 +9,7 @@
 |      Roger M. Needham                                    |
 |                                                          |
 | Code Author: Ma Bingyao <mabingyao@gmail.com>            |
-| LastModified: Apr 15, 2014                               |
+| LastModified: Mar 10, 2015                               |
 |                                                          |
 \**********************************************************/
 
@@ -38,7 +38,7 @@
         return bytes;
     }
 
-    function toInt32Array(bytes, includeLength) {
+    function toUint32Array(bytes, includeLength) {
         var length = bytes.length;
         var n = length >>> 2;
         if ((length & 3) !== 0) {
@@ -46,11 +46,11 @@
         }
         var v;
         if (includeLength) {
-            v = new Int32Array(n + 1);
+            v = new Uint32Array(n + 1);
             v[n] = length;
         }
          else {
-            v = new Int32Array(n);
+            v = new Uint32Array(n);
         }
         for (var i = 0; i < length; ++i) {
             v[i >> 2] |= bytes[i] << ((i & 3) << 3);
@@ -63,21 +63,19 @@
     }
 
     function fixk(k) {
-        if (k.length < 4) {
-            var key = new Int32Array(4);
+        if (k.length < 16) {
+            var key = new Uint8Array(16);
             key.set(k);
             k = key;
         }
         return k;
     }
 
-    function encryptInt32Array(v, k) {
+    function encryptUint32Array(v, k) {
         var length = v.length;
         var n = length - 1;
-        k = fixk(k);
         var y, z, sum, e, p, q;
         z = v[n];
-        y = v[0];
         sum = 0;
         for (q = Math.floor(6 + 52/length) | 0; q > 0; --q) {
             sum += delta;
@@ -92,12 +90,10 @@
         return v;
     }
 
-    function decryptInt32Array(v, k) {
+    function decryptUint32Array(v, k) {
         var length = v.length;
         var n = length - 1;
-        k = fixk(k);
         var y, z, sum, e, p, q;
-        z = v[n];
         y = v[0];
         q = Math.floor(6 + 52/length);
         for (sum = q * delta; sum !== 0; sum -= delta) {
@@ -116,14 +112,14 @@
         if (data === undefined || data === null || data.length === 0) {
             return data;
         }
-        return toUint8Array(encryptInt32Array(toInt32Array(data, true), toInt32Array(key, false)), false);
+        return toUint8Array(encryptUint32Array(toUint32Array(data, true), toUint32Array(fixk(key), false)), false);
     }
 
     function decrypt(data, key) {
         if (data === undefined || data === null || data.length === 0) {
             return data;
         }
-        return toUint8Array(decryptInt32Array(toInt32Array(data, false), toInt32Array(key, false)), true);
+        return toUint8Array(decryptUint32Array(toUint32Array(data, false), toUint32Array(fixk(key), false)), true);
     }
 
     function toBytes(str) {
