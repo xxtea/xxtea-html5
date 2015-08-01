@@ -1,5 +1,14 @@
 # XXTEA 加密算法的 HTML5 实现
 
+<a href="https://github.com/xxtea/">
+    <img src="https://avatars1.githubusercontent.com/u/6683159?v=3&s=86" alt="XXTEA logo" title="XXTEA" align="right" />
+</a>
+
+[![Join the chat at https://gitter.im/xxtea/xxtea-html5](https://img.shields.io/badge/GITTER-join%20chat-green.svg)](https://gitter.im/xxtea/xxtea-html5?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![bower version](https://img.shields.io/bower/v/xxtea.svg)](http://bower.io/search/?q=xxtea)
+[![GitHub release](https://img.shields.io/github/release/xxtea/xxtea-html5.svg)](https://github.com/xxtea/xxtea-html5/releases)
+[![License](https://img.shields.io/github/license/xxtea/xxtea-html5.svg)](http://opensource.org/licenses/MIT)
+
 ## 简介
 
 XXTEA 是一个快速安全的加密算法。本项目是 XXTEA 加密算法的 HTML5 实现。
@@ -14,7 +23,7 @@ XXTEA 是一个快速安全的加密算法。本项目是 XXTEA 加密算法的 
     <head>
         <title>XXTEA test</title>
         <meta charset="UTF-8">
-        <script src="xxtea.js" type="text/javascript"></script>
+        <script src="dist/xxtea.min.js" type="text/javascript"></script>
     </head>
     <body>
         <script type="text/javascript">

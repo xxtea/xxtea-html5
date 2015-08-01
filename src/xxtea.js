@@ -9,14 +9,12 @@
 |      Roger M. Needham                                    |
 |                                                          |
 | Code Author: Ma Bingyao <mabingyao@gmail.com>            |
-| LastModified: Mar 10, 2015                               |
+| LastModified: Aug 1, 2015                                |
 |                                                          |
 \**********************************************************/
 
 (function (global) {
     'use strict';
-
-    global.xxtea = global.xxtea || Object.create(null);
 
     var delta = 0x9E3779B9;
 
@@ -227,28 +225,10 @@
         return String.fromCharCode.apply(String, charCodes);
     }
 
-    Object.defineProperty(global.xxtea, 'encrypt', {
-        value: encrypt,
-        writable: false,
-        configurable: false,
-        enumerable: false
-    });
-    Object.defineProperty(global.xxtea, 'decrypt', {
-        value: decrypt,
-        writable: false,
-        configurable: false,
-        enumerable: false
-    });
-    Object.defineProperty(global.xxtea, 'toBytes', {
-        value: toBytes,
-        writable: false,
-        configurable: false,
-        enumerable: false
-    });
-    Object.defineProperty(global.xxtea, 'toString', {
-        value: toString,
-        writable: false,
-        configurable: false,
-        enumerable: false
+    global.xxtea = Object.create(null, {
+        encrypt: { value: encrypt },
+        decrypt: { value: decrypt },
+        toBytes: { value: toBytes },
+        toString: { value: toString }
     });
 })(this);
