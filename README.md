@@ -5,7 +5,7 @@
 </a>
 
 [![Join the chat at https://gitter.im/xxtea/xxtea-html5](https://img.shields.io/badge/GITTER-join%20chat-green.svg)](https://gitter.im/xxtea/xxtea-html5?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![bower version](https://img.shields.io/bower/v/xxtea.svg)](http://bower.io/search/?q=xxtea)
+[![bower version](https://img.shields.io/bower/v/xxtea-html5.svg)](http://bower.io/search/?q=xxtea-html5)
 [![GitHub release](https://img.shields.io/github/release/xxtea/xxtea-html5.svg)](https://github.com/xxtea/xxtea-html5/releases)
 [![License](https://img.shields.io/github/license/xxtea/xxtea-html5.svg)](http://opensource.org/licenses/MIT)
 
