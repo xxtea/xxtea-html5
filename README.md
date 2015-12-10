@@ -37,3 +37,32 @@ It is different from the original XXTEA encryption algorithm. It encrypts and de
     </body>
 </html>
 ```
+
+## ChangeLog
+
+1.1.0 update
+
+Fixed Emoji encode & decode bug.
+Improved Long String encrypt and decrypt.
+Added encryptToString and decryptToString, for example:
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>XXTEA test</title>
+        <meta charset="UTF-8">
+        <script src="dist/xxtea.min.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var str = "Hello World! 你好，中国🇨🇳！";
+            var key = "1234567890";
+            var encrypt_data = xxtea.encryptToString(str, key);
+            console.log(encrypt_data);
+            var decrypt_data = xxtea.decryptToString(encrypt_data, key);
+            console.assert(str === decrypt_data);
+        </script>
+    </body>
+</html>
+```

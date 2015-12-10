@@ -37,3 +37,32 @@ XXTEA 是一个快速安全的加密算法。本项目是 XXTEA 加密算法的 
     </body>
 </html>
 ```
+
+## 更新日志
+
+1.1.0 更新
+
+修正了表情符编码解码的问题。
+改进了长字符串的加密解密。
+增加了 `encryptToString` 和 `decryptToString` 方法，例如：
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>XXTEA test</title>
+        <meta charset="UTF-8">
+        <script src="dist/xxtea.min.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var str = "Hello World! 你好，中国🇨🇳！";
+            var key = "1234567890";
+            var encrypt_data = xxtea.encryptToString(str, key);
+            console.log(encrypt_data);
+            var decrypt_data = xxtea.decryptToString(encrypt_data, key);
+            console.assert(str === decrypt_data);
+        </script>
+    </body>
+</html>
+```
