@@ -42,9 +42,9 @@ It is different from the original XXTEA encryption algorithm. It encrypts and de
 
 1.1.0 update
 
-Fixed Emoji encode & decode bug.
-Improved Long String encrypt and decrypt.
-Added encryptToString and decryptToString, for example:
+* Fixed Emoji encode & decode bug.
+* Improved Long String encrypt and decrypt.
+* Added `encryptToString` and `decryptToString`, for example:
 
 ```html
 <!DOCTYPE html>
