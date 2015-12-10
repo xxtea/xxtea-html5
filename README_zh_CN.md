@@ -42,9 +42,9 @@ XXTEA 是一个快速安全的加密算法。本项目是 XXTEA 加密算法的 
 
 1.1.0 更新
 
-修正了表情符编码解码的问题。
-改进了长字符串的加密解密。
-增加了 `encryptToString` 和 `decryptToString` 方法，例如：
+* 修正了表情符编码解码的问题。
+* 改进了长字符串的加密解密。
+* 增加了 `encryptToString` 和 `decryptToString` 方法，例如：
 
 ```html
 <!DOCTYPE html>
