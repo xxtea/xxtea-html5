@@ -9,12 +9,22 @@
 |      Roger M. Needham                                    |
 |                                                          |
 | Code Author: Ma Bingyao <mabingyao@gmail.com>            |
-| LastModified: Dec 10, 2015                               |
+| LastModified: Jan 28, 2016                               |
 |                                                          |
 \**********************************************************/
 
 (function (global) {
     'use strict';
+
+    var arrayLikeObjectArgumentsEnabled = true;
+    
+    try {
+        String.fromCharCode.apply(String, new Uint8Array([1, 2]));
+    }
+    catch (e) {
+        arrayLikeObjectArgumentsEnabled = false;
+        Array.prototype.subarray = Array.prototype.slice;
+    }
 
     var delta = 0x9E3779B9;
 
@@ -31,14 +41,14 @@
         }
         var bytes = new Uint8Array(n);
         for (var i = 0; i < n; ++i) {
-            bytes[i] = v[i >>> 2] >>> ((i & 3) << 3);
+            bytes[i] = v[i >> 2] >> ((i & 3) << 3);
         }
         return bytes;
     }
 
     function toUint32Array(bytes, includeLength) {
         var length = bytes.length;
-        var n = length >>> 2;
+        var n = length >> 2;
         if ((length & 3) !== 0) {
             ++n;
         }
@@ -147,7 +157,7 @@
     }
 
     function toShortString(bytes, n) {
-        var charCodes = new Uint16Array(n);
+        var charCodes = (arrayLikeObjectArgumentsEnabled ? new Uint16Array(n) : new Array(n));
         var i = 0, off = 0;
         for (var len = bytes.length; i < n && off < len; i++) {
             var unit = bytes[off++];
@@ -212,7 +222,7 @@
 
     function toLongString(bytes, n) {
         var buf = [];
-        var charCodes = new Uint16Array(0xffff);
+        var charCodes = (arrayLikeObjectArgumentsEnabled ? new Uint16Array(0xffff) : new Array(0xffff));
         var i = 0, off = 0;
         for (var len = bytes.length; i < n && off < len; i++) {
             var unit = bytes[off++];
@@ -289,20 +299,30 @@
                 toLongString(bytes, n));
     }
 
+    function toArray(bytes) {
+        var n = bytes.length;
+        var a = new Array(bytes.length);
+        for (var i = 0; i < n; ++i) {
+            a[i] = bytes[i];
+        }
+        return a;
+    }
+
     function toAsciiString(bytes) {
         var n = bytes.length;
         if (n === 0) return '';
+         var charCodes = (arrayLikeObjectArgumentsEnabled ? bytes : toArray(bytes));
         if (n < 100000) {
-            return String.fromCharCode.apply(String, bytes);
+            return String.fromCharCode.apply(String, charCodes);
         }
         var remain = n & 0xffff;
         var count = n >> 16;
         var a = new Array(remain ? count + 1 : count);
         for (var i = 0; i < count; ++i) {
-            a[i] = String.fromCharCode.apply(String, bytes.subarray(i << 16, (i + 1) << 16));
+            a[i] = String.fromCharCode.apply(String, charCodes.subarray(i << 16, (i + 1) << 16));
         }
         if (remain) {
-            a[count] = String.fromCharCode.apply(String, bytes.subarray(count << 16, n));
+            a[count] = String.fromCharCode.apply(String, charCodes.subarray(count << 16, n));
         }
         return a.join('');
     }
