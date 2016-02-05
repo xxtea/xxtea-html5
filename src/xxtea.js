@@ -9,7 +9,7 @@
 |      Roger M. Needham                                    |
 |                                                          |
 | Code Author: Ma Bingyao <mabingyao@gmail.com>            |
-| LastModified: Jan 28, 2016                               |
+| LastModified: Feb 5, 2016                                |
 |                                                          |
 \**********************************************************/
 
@@ -23,7 +23,7 @@
     }
     catch (e) {
         arrayLikeObjectArgumentsEnabled = false;
-        Array.prototype.subarray = Array.prototype.slice;
+        Object.defineProperty(Array.prototype, 'subarray', { value: Array.prototype.slice });
     }
 
     var delta = 0x9E3779B9;
@@ -157,7 +157,7 @@
     }
 
     function toShortString(bytes, n) {
-        var charCodes = (arrayLikeObjectArgumentsEnabled ? new Uint16Array(n) : new Array(n));
+        var charCodes = new Array(n);
         var i = 0, off = 0;
         for (var len = bytes.length; i < n && off < len; i++) {
             var unit = bytes[off++];
@@ -215,14 +215,14 @@
             }
         }
         if (i < n) {
-            charCodes = charCodes.subarray(0, i);
+            charCodes.length = i;
         }
         return String.fromCharCode.apply(String, charCodes);
     }
 
     function toLongString(bytes, n) {
         var buf = [];
-        var charCodes = (arrayLikeObjectArgumentsEnabled ? new Uint16Array(0xffff) : new Array(0xffff));
+        var charCodes = new Array(0xffff);
         var i = 0, off = 0;
         for (var len = bytes.length; i < n && off < len; i++) {
             var unit = bytes[off++];
@@ -280,13 +280,15 @@
             }
             if (i >= 65534) {
                 var size = i + 1;
-                buf.push(String.fromCharCode.apply(String, charCodes.subarray(0, size)));
+                charCodes.length = size;
+                buf.push(String.fromCharCode.apply(String, charCodes));
                 n -= size;
                 i = -1;
             }
         }
         if (i > 0) {
-            buf.push(String.fromCharCode.apply(String, charCodes.subarray(0, i)));
+            charCodes.length = i;
+            buf.push(String.fromCharCode.apply(String, charCodes));
         }
         return buf.join('');
     }
@@ -311,7 +313,7 @@
     function toAsciiString(bytes) {
         var n = bytes.length;
         if (n === 0) return '';
-         var charCodes = (arrayLikeObjectArgumentsEnabled ? bytes : toArray(bytes));
+        var charCodes = (arrayLikeObjectArgumentsEnabled ? bytes : toArray(bytes));
         if (n < 100000) {
             return String.fromCharCode.apply(String, charCodes);
         }
