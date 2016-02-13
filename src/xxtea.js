@@ -9,7 +9,7 @@
 |      Roger M. Needham                                    |
 |                                                          |
 | Code Author: Ma Bingyao <mabingyao@gmail.com>            |
-| LastModified: Feb 5, 2016                                |
+| LastModified: Feb 13, 2016                               |
 |                                                          |
 \**********************************************************/
 
@@ -57,7 +57,7 @@
             v = new Uint32Array(n + 1);
             v[n] = length;
         }
-         else {
+        else {
             v = new Uint32Array(n);
         }
         for (var i = 0; i < length; ++i) {
@@ -118,7 +118,6 @@
 
     function toBytes(str) {
         var n = str.length;
-        if (n === 0) return;
         // A single code unit uses at most 3 bytes.
         // Two code units at most 4.
         var bytes = new Uint8Array(n * 3);
@@ -132,7 +131,7 @@
                 bytes[length++] = 0xC0 | (codeUnit >> 6);
                 bytes[length++] = 0x80 | (codeUnit & 0x3F);
             }
-            else if (codeUnit < 0xD800 || codeUnit > 0xDfff) {
+            else if (codeUnit < 0xD800 || codeUnit > 0xDFFF) {
                 bytes[length++] = 0xE0 | (codeUnit >> 12);
                 bytes[length++] = 0x80 | ((codeUnit >> 6) & 0x3F);
                 bytes[length++] = 0x80 | (codeUnit & 0x3F);
