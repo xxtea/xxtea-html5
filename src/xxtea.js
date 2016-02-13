@@ -221,7 +221,7 @@
 
     function toLongString(bytes, n) {
         var buf = [];
-        var charCodes = new Array(0xffff);
+        var charCodes = new Array(0xFFFF);
         var i = 0, off = 0;
         for (var len = bytes.length; i < n && off < len; i++) {
             var unit = bytes[off++];
