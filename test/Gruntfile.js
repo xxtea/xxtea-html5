@@ -63,7 +63,7 @@ module.exports = function (grunt) {
     browserName: 'firefox',
     platform: 'Linux'
   }, {
-    browserName: 'safari',
+    browserName: 'opera',
     platform: 'Linux'
   }, {
     browserName: 'chrome',
@@ -137,11 +137,11 @@ module.exports = function (grunt) {
   }, {
     browserName: 'opera',
     platform: 'Windows 7',
-    version: '12.12'
+    version: '12'
   }, {
     browserName: 'opera',
     platform: 'Windows 7',
-    version: '11.64'
+    version: '11'
   }, {
     browserName: 'chrome',
     platform: 'Windows XP'
@@ -151,11 +151,11 @@ module.exports = function (grunt) {
   }, {
     browserName: 'opera',
     platform: 'Windows XP',
-    version: '12.12'
+    version: '12'
   }, {
     browserName: 'opera',
     platform: 'Windows XP',
-    version: '11.64'
+    version: '11'
   }];
 
   grunt.initConfig({
@@ -175,13 +175,14 @@ module.exports = function (grunt) {
           username: 'xxtea-html5',
           key: 'e6a46f2c-33b9-473a-8c81-ec0228d7d9f5',
           urls: [
-            'http://127.0.0.1:9999/xxtea_test.html'
+            'http://127.0.0.1:9999/index.html'
           ],
           browsers: browsers,
           build: process.env.TRAVIS_JOB_ID,
           testname: 'xxtea-html5 tests',
           throttled: 5,
           statusCheckAttempts: -1,
+          maxRetries: 3,
           sauceConfig: {
             'video-upload-on-pass': false
           }
