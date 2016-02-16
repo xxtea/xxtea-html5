@@ -9,7 +9,7 @@
 |      Roger M. Needham                                    |
 |                                                          |
 | Code Author: Ma Bingyao <mabingyao@gmail.com>            |
-| LastModified: Feb 13, 2016                               |
+| LastModified: Feb 16, 2016                               |
 |                                                          |
 \**********************************************************/
 
@@ -17,7 +17,7 @@
     'use strict';
 
     var arrayLikeObjectArgumentsEnabled = true;
-    
+
     try {
         String.fromCharCode.apply(String, new Uint8Array([1, 2]));
     }
@@ -26,7 +26,7 @@
         Object.defineProperty(Array.prototype, 'subarray', { value: Array.prototype.slice });
     }
 
-    var delta = 0x9E3779B9;
+    var DELTA = 0x9E3779B9;
 
     function toUint8Array(v, includeLength) {
         var length = v.length;
@@ -66,6 +66,10 @@
         return v;
     }
 
+    function int32(i) {
+      return i & 0xFFFFFFFF;
+    }
+
     function mx(sum, y, z, p, e, k) {
         return ((z >>> 5 ^ y << 2) + (y >>> 3 ^ z << 4)) ^ ((sum ^ y) + (k[p & 3 ^ e] ^ z));
     }
@@ -86,14 +90,14 @@
         z = v[n];
         sum = 0;
         for (q = Math.floor(6 + 52/length) | 0; q > 0; --q) {
-            sum += delta;
+            sum = int32(sum + DELTA);
             e = sum >>> 2 & 3;
             for (p = 0; p < n; ++p) {
                 y = v[p + 1];
-                z = v[p] += mx(sum, y, z, p, e, k);
+                z = v[p] = int32(v[p] + mx(sum, y, z, p, e, k));
             }
             y = v[0];
-            z = v[n] += mx(sum, y, z, p, e, k);
+            z = v[n] = int32(v[n] + mx(sum, y, z, n, e, k));
         }
         return v;
     }
@@ -104,14 +108,14 @@
         var y, z, sum, e, p, q;
         y = v[0];
         q = Math.floor(6 + 52/length);
-        for (sum = q * delta; sum !== 0; sum -= delta) {
+        for (sum = int32(q * DELTA); sum !== 0; sum = int32(sum - DELTA)) {
             e = sum >>> 2 & 3;
             for (p = n; p > 0; --p) {
                 z = v[p - 1];
-                y = v[p] -= mx(sum, y, z, p, e, k);
+                y = v[p] = int32(v[p] - mx(sum, y, z, p, e, k));
             }
             z = v[n];
-            y = v[0] -= mx(sum, y, z, p, e, k);
+            y = v[0] = int32(v[0] - mx(sum, y, z, 0, e, k));
         }
         return v;
     }
