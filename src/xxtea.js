@@ -141,7 +141,7 @@
                 bytes[length++] = 0x80 | (codeUnit & 0x3F);
             }
             else {
-                if (i + 1 < length) {
+                if (i + 1 < n) {
                     var nextCodeUnit = str.charCodeAt(i + 1);
                     if (codeUnit < 0xDC00 && 0xDC00 <= nextCodeUnit && nextCodeUnit <= 0xDFFF) {
                         var rune = (((codeUnit & 0x03FF) << 10) | (nextCodeUnit & 0x03FF)) + 0x010000;
