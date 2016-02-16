@@ -9,6 +9,8 @@
 [![GitHub release](https://img.shields.io/github/release/xxtea/xxtea-html5.svg)](https://github.com/xxtea/xxtea-html5/releases)
 [![License](https://img.shields.io/github/license/xxtea/xxtea-html5.svg)](http://opensource.org/licenses/MIT)
 
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/xxtea-html5.svg)](https://saucelabs.com/u/xxtea-html5)
+
 ## 简介
 
 XXTEA 是一个快速安全的加密算法。本项目是 XXTEA 加密算法的 HTML5 实现。

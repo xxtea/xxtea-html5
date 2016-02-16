@@ -9,6 +9,8 @@
 [![GitHub release](https://img.shields.io/github/release/xxtea/xxtea-html5.svg)](https://github.com/xxtea/xxtea-html5/releases)
 [![License](https://img.shields.io/github/license/xxtea/xxtea-html5.svg)](http://opensource.org/licenses/MIT)
 
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/xxtea-html5.svg)](https://saucelabs.com/u/xxtea-html5)
+
 ## Introduction
 
 XXTEA is a fast and secure encryption algorithm. This is a XXTEA library for HTML5.
