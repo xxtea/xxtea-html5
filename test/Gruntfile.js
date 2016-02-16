@@ -43,9 +43,6 @@ module.exports = function (grunt) {
     version: '8.0'
   }, {
     browserName: 'iphone',
-    version: '7.1'
-  }, {
-    browserName: 'iphone',
     version: '7.0'
   }, {
     browserName: 'iphone',
@@ -61,9 +58,6 @@ module.exports = function (grunt) {
     platform: 'Linux'
   }, {
     browserName: 'firefox',
-    platform: 'Linux'
-  }, {
-    browserName: 'opera',
     platform: 'Linux'
   }, {
     browserName: 'chrome',
@@ -135,27 +129,11 @@ module.exports = function (grunt) {
     browserName: 'safari',
     platform: 'Windows 7'
   }, {
-    browserName: 'opera',
-    platform: 'Windows 7',
-    version: '12'
-  }, {
-    browserName: 'opera',
-    platform: 'Windows 7',
-    version: '11'
-  }, {
     browserName: 'chrome',
     platform: 'Windows XP'
   }, {
     browserName: 'firefox',
     platform: 'Windows XP'
-  }, {
-    browserName: 'opera',
-    platform: 'Windows XP',
-    version: '12'
-  }, {
-    browserName: 'opera',
-    platform: 'Windows XP',
-    version: '11'
   }];
 
   grunt.initConfig({
