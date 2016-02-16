@@ -1,79 +1,60 @@
 module.exports = function (grunt) {
   var browsers = [{
     browserName: 'android',
-    platform: 'Linux',
     version: '4.0'
   }, {
     browserName: 'android',
-    platform: 'Linux',
     version: '4.1'
   }, {
     browserName: 'android',
-    platform: 'Linux',
     version: '4.2'
   }, {
     browserName: 'android',
-    platform: 'Linux',
     version: '4.3'
   }, {
     browserName: 'android',
-    platform: 'Linux',
     version: '4.4'
   }, {
     browserName: 'android',
-    platform: 'Linux',
     version: '5.1'
   }, {
     browserName: 'iphone',
-    platform: 'OS X 10.10',
     version: '9.2'
   }, {
     browserName: 'iphone',
-    platform: 'OS X 10.10',
     version: '9.1'
   }, {
     browserName: 'iphone',
-    platform: 'OS X 10.10',
     version: '9.0'
   }, {
     browserName: 'iphone',
-    platform: 'OS X 10.10',
     version: '8.4'
   }, {
     browserName: 'iphone',
-    platform: 'OS X 10.10',
     version: '8.3'
   }, {
     browserName: 'iphone',
-    platform: 'OS X 10.10',
     version: '8.2'
   }, {
     browserName: 'iphone',
-    platform: 'OS X 10.10',
     version: '8.1'
   }, {
     browserName: 'iphone',
-    platform: 'OS X 10.10',
     version: '8.0'
   }, {
     browserName: 'iphone',
-    platform: 'OS X 10.10',
     version: '7.1'
   }, {
     browserName: 'iphone',
-    platform: 'OS X 10.10',
     version: '7.0'
   }, {
     browserName: 'iphone',
-    platform: 'OS X 10.10',
     version: '6.1'
   }, {
     browserName: 'iphone',
-    platform: 'OS X 10.10',
     version: '6.0'
   }, {
     browserName: 'iphone',
-    platform: 'OS X 10.10',
     version: '5.1'
   }, {
     browserName: 'chrome',
@@ -199,7 +180,8 @@ module.exports = function (grunt) {
           browsers: browsers,
           build: process.env.TRAVIS_JOB_ID,
           testname: 'xxtea-html5 tests',
-          throttled: 3,
+          throttled: 5,
+          statusCheckAttempts: -1,
           sauceConfig: {
             'video-upload-on-pass': false
           }
