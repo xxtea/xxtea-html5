@@ -9,7 +9,7 @@
 |      Roger M. Needham                                    |
 |                                                          |
 | Code Author: Ma Bingyao <mabingyao@gmail.com>            |
-| LastModified: Feb 16, 2016                               |
+| LastModified: Oct 4, 2016                                |
 |                                                          |
 \**********************************************************/
 
@@ -225,7 +225,7 @@
 
     function toLongString(bytes, n) {
         var buf = [];
-        var charCodes = new Array(0xFFFF);
+        var charCodes = new Array(0x8000);
         var i = 0, off = 0;
         for (var len = bytes.length; i < n && off < len; i++) {
             var unit = bytes[off++];
@@ -281,7 +281,7 @@
             default:
                 throw new Error('Bad UTF-8 encoding 0x' + unit.toString(16));
             }
-            if (i >= 65534) {
+            if (i >= 0x7FFF - 1) {
                 var size = i + 1;
                 charCodes.length = size;
                 buf.push(String.fromCharCode.apply(String, charCodes));
@@ -299,7 +299,7 @@
     function toString(bytes) {
         var n = bytes.length;
         if (n === 0) return '';
-        return ((n < 100000) ?
+        return ((n < 0xFFFF) ?
                 toShortString(bytes, n) :
                 toLongString(bytes, n));
     }
@@ -317,17 +317,17 @@
         var n = bytes.length;
         if (n === 0) return '';
         var charCodes = (arrayLikeObjectArgumentsEnabled ? bytes : toArray(bytes));
-        if (n < 100000) {
+        if (n < 0xFFFF) {
             return String.fromCharCode.apply(String, charCodes);
         }
-        var remain = n & 0xffff;
-        var count = n >> 16;
+        var remain = n & 0x7FFF;
+        var count = n >> 15;
         var a = new Array(remain ? count + 1 : count);
         for (var i = 0; i < count; ++i) {
-            a[i] = String.fromCharCode.apply(String, charCodes.subarray(i << 16, (i + 1) << 16));
+            a[i] = String.fromCharCode.apply(String, charCodes.subarray(i << 15, (i + 1) << 15));
         }
         if (remain) {
-            a[count] = String.fromCharCode.apply(String, charCodes.subarray(count << 16, n));
+            a[count] = String.fromCharCode.apply(String, charCodes.subarray(count << 15, n));
         }
         return a.join('');
     }
@@ -376,4 +376,4 @@
         decrypt: { value: decrypt },
         decryptToString: { value: decryptToString }
     });
-})(this);
+})(this || [eval][0]('this'));
