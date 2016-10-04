@@ -19,6 +19,9 @@ module.exports = function (grunt) {
     version: '5.1'
   }, {
     browserName: 'iphone',
+    version: '9.3'
+  }, {
+    browserName: 'iphone',
     version: '9.2'
   }, {
     browserName: 'iphone',
@@ -53,6 +56,45 @@ module.exports = function (grunt) {
   }, {
     browserName: 'iphone',
     version: '5.1'
+}, {
+  browserName: 'ipad',
+  version: '9.3'
+}, {
+  browserName: 'ipad',
+  version: '9.2'
+}, {
+  browserName: 'ipad',
+  version: '9.1'
+}, {
+  browserName: 'ipad',
+  version: '9.0'
+}, {
+  browserName: 'ipad',
+  version: '8.4'
+}, {
+  browserName: 'ipad',
+  version: '8.3'
+}, {
+  browserName: 'ipad',
+  version: '8.2'
+}, {
+  browserName: 'ipad',
+  version: '8.1'
+}, {
+  browserName: 'ipad',
+  version: '8.0'
+}, {
+  browserName: 'ipad',
+  version: '7.0'
+}, {
+  browserName: 'ipad',
+  version: '6.1'
+}, {
+  browserName: 'ipad',
+  version: '6.0'
+}, {
+  browserName: 'ipad',
+  version: '5.1'
   }, {
     browserName: 'chrome',
     platform: 'Linux'
@@ -170,7 +212,7 @@ module.exports = function (grunt) {
       all: {
         options: {
           username: 'xxtea-html5',
-          key: 'e6a46f2c-33b9-473a-8c81-ec0228d7d9f5',
+          key: function() { return 'e6a46f2c-33b9-473a-8c81-ec0228d7d9f5'; },
           urls: [
             'http://127.0.0.1:9999/index.html'
           ],
