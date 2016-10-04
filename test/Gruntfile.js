@@ -48,53 +48,35 @@ module.exports = function (grunt) {
     browserName: 'iphone',
     version: '7.0'
   }, {
-    browserName: 'iphone',
-    version: '6.1'
+    browserName: 'ipad',
+    version: '9.3'
   }, {
-    browserName: 'iphone',
-    version: '6.0'
+    browserName: 'ipad',
+    version: '9.2'
   }, {
-    browserName: 'iphone',
-    version: '5.1'
-}, {
-  browserName: 'ipad',
-  version: '9.3'
-}, {
-  browserName: 'ipad',
-  version: '9.2'
-}, {
-  browserName: 'ipad',
-  version: '9.1'
-}, {
-  browserName: 'ipad',
-  version: '9.0'
-}, {
-  browserName: 'ipad',
-  version: '8.4'
-}, {
-  browserName: 'ipad',
-  version: '8.3'
-}, {
-  browserName: 'ipad',
-  version: '8.2'
-}, {
-  browserName: 'ipad',
-  version: '8.1'
-}, {
-  browserName: 'ipad',
-  version: '8.0'
-}, {
-  browserName: 'ipad',
-  version: '7.0'
-}, {
-  browserName: 'ipad',
-  version: '6.1'
-}, {
-  browserName: 'ipad',
-  version: '6.0'
-}, {
-  browserName: 'ipad',
-  version: '5.1'
+    browserName: 'ipad',
+    version: '9.1'
+  }, {
+    browserName: 'ipad',
+    version: '9.0'
+  }, {
+    browserName: 'ipad',
+    version: '8.4'
+  }, {
+    browserName: 'ipad',
+    version: '8.3'
+  }, {
+    browserName: 'ipad',
+    version: '8.2'
+  }, {
+    browserName: 'ipad',
+    version: '8.1'
+  }, {
+    browserName: 'ipad',
+    version: '8.0'
+  }, {
+    browserName: 'ipad',
+    version: '7.0'
   }, {
     browserName: 'chrome',
     platform: 'Linux'
