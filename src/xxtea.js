@@ -299,7 +299,7 @@
     function toString(bytes) {
         var n = bytes.length;
         if (n === 0) return '';
-        return ((n < 0xFFFF) ?
+        return ((n < 0x7FFF) ?
             toShortString(bytes, n) :
             toLongString(bytes, n));
     }
