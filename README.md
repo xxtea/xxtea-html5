@@ -1,7 +1,7 @@
 # XXTEA for HTML5
 
 <a href="https://github.com/xxtea/">
-    <img src="https://avatars1.githubusercontent.com/u/6683159?v=3&s=86" alt="XXTEA logo" title="XXTEA" align="right" />
+    <img src="https://avatars1.githubusercontent.com/u/6683159?v=3&s=86" alt="XXTEA logo" title="XXTEA" align="right"/>
 </a>
 
 [![Build Status](https://travis-ci.org/xxtea/xxtea-html5.svg?branch=master)](https://travis-ci.org/xxtea/xxtea-html5)
@@ -12,13 +12,13 @@
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/xxtea-html5.svg)](https://saucelabs.com/u/xxtea-html5)
 
-## Introduction
+##Introduction
 
 XXTEA is a fast and secure encryption algorithm. This is a XXTEA library for HTML5.
 
 It is different from the original XXTEA encryption algorithm. It encrypts and decrypts Uint8Array instead of uint32[], and the key is also Uint8Array. If you want to encrypt String, you can use xxtea.toBytes(str) to convert String to Uint8Array, when you decrypt Uint8Array, you can use xxtea.toString(bytes) to convert the result to String. Conversion between string and Uint8Array is using UTF8 encoding.
 
-## Usage
+##Usage
 
 ```html
 <!DOCTYPE html>
@@ -41,7 +41,7 @@ It is different from the original XXTEA encryption algorithm. It encrypts and de
 </html>
 ```
 
-## ChangeLog
+##ChangeLog
 
 1.1.0 update
 
@@ -68,4 +68,3 @@ It is different from the original XXTEA encryption algorithm. It encrypts and de
         </script>
     </body>
 </html>
-```
